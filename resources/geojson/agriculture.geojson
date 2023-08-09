@@ -1,0 +1,61 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+       
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Riziculture",
+                "image": "https://en.wikipedia.org/wiki/Statue_of_Liberty#/media/File:Lady_Liberty_under_a_blue_sky_(cropped).jpg"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [47.0558634385753649, -20.059280063781422]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pomme de terre",
+                "image": "https://en.wikipedia.org/wiki/Colosseum#/media/File:Colosseo_2020.jpg"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [47.0558634385753649, -20.059280063781422]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Petits Pois",
+                "image": "https://en.wikipedia.org/wiki/Colosseum#/media/File:Colosseo_2020.jpg"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [47.0558634385753649, -20.059280063781422]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Blés",
+                "image": "https://en.wikipedia.org/wiki/Colosseum#/media/File:Colosseo_2020.jpg"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [47.0558634385753649, -20.059280063781422]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Bredes",
+                "image": "https://en.wikipedia.org/wiki/Colosseum#/media/File:Colosseo_2020.jpg"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [47.0558634385753649, -20.059280063781422]
+            }
+        }
+    ]
+}

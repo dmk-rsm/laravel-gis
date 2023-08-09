@@ -1,0 +1,77 @@
+version: "3.7"
+volumes:
+    postgres-data:
+    redis-data:
+    geoserver-data:
+networks:
+    frontend:
+    backend:
+services:
+    proxy:
+        image: nginx:latest
+        ports:
+            - "8080:80"
+        volumes:
+            - ./:/var/www/app
+            - ./docker/nginx/nginx-site.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - frontend
+            - backend
+    php:
+        build:
+          context: ./docker/php
+          dockerfile: Dockerfile
+        image: laravelgis-php:latest
+        ports:
+            - "5173:5173"
+        volumes:
+            - ./:/var/www/app
+        networks:
+            - backend
+    postgres:
+        container_name: postgre_container
+        image: postgis/postgis:15-3.3
+        restart: always
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_PASSWORD: zerovalo
+            POSTGRES_USER: damika
+            POSTGRES_DB: laravelgis
+            PGDATA: /var/lib/postgresql/data
+        networks:
+            - backend
+    pgadmin:
+        container_name: pgadmin4_container
+        image: dpage/pgadmin4
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com
+            PGADMIN_DEFAULT_PASSWORD: root
+            PGADMIN_SERVER_JSON_FILE: /pgadmin4/servers.json  # Add this line
+        ports:
+            - "5050:80"
+        networks:
+            - backend
+    redis:
+        image: redis:latest
+        sysctls:
+            - net.core.somaxconn=511
+        ports:
+            - "6379:6379"
+        volumes:
+            - redis-data:/data
+        networks:
+            - backend
+    geoserver:
+        image: kartoza/geoserver:latest
+        volumes:
+            - geoserver-data:/opt/geoserver/data_dir
+        environment:
+            GEOSERVER_DATA_DIR: /opt/geoserver/data_dir
+            GEOSERVER_ADMIN_USER: admin
+            GEOSERVER_ADMIN_PASSWORD: geoserver
+        networks:
+            - backend
